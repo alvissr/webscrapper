@@ -17,3 +17,6 @@ class ScraperController extends Controller
     return $website->html();
 }
 }
+
+
+

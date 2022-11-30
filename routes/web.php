@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ScraperController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function() {
-    $crawler = Goutte::request('GET', 'https://duckduckgo.com/html/?q=Laravel');
-    $crawler->filter('.result__title .result__a')->each(function ($node) {
-      dump($node->text());
-    });
-    return view('welcome');
-});
+// Route::get('/', function() {
+//     $crawler = Goutte::request('GET', 'https://duckduckgo.com/html/?q=Laravel');
+//     $crawler->filter('.result__title .result__a')->each(function ($node) {
+//       dump($node->text());
+//     });
+//     return view('welcome');
+// });
+
+Route::get("/", [ScraperController::class, "index"]);
