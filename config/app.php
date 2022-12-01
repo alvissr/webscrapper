@@ -215,6 +215,14 @@ return [
         'Goutte' => Weidner\Goutte\GoutteFacade::class,
     ])->toArray(),
 
+    'App' => Illuminate\Support\Facades\App::class,
+    'Artisan' => Illuminate\Support\Facades\Artisan::class,
 
+    // ...
+
+    'Goutte' => Weidner\Goutte\GoutteFacade::class, // [2] It will register as an alias for the Goutte facade
+    'Hash' => Illuminate\Support\Facades\Hash::class,
+
+    // ...
     
 ];
