@@ -16,20 +16,21 @@ class ScraperController extends Controller
     $website = $crawler->request('GET', 'https://www.numbeo.com/cost-of-living/region_rankings.jsp?title=2022-mid&region=150');
     
     // return $website->html();
-    $web_data = [];
-    $web_data[] = $website
-        ->filter('#t2 > tbody ')
-        ->each(function ($node) {
-            dd( $node->text());
-            $sku = array();
-            $sku[]  = explode(' ', $node->filter('tr')->text());
-            // $title = trim($node->filter('.title a')->text());
-            // $web_data[] =$sku;
-            // var_dump($sku);
-            return $sku;
-
+    $web_data =  array();
+    $table = $website->filter('#t2 > tbody')->eq(0);
+   
+    $table->filter('tr')->each(function ($row) use (&$web_data) {
+            // dd( $node->text());
+            $rowData = array();
+            $row->filter('td, th')->each(function($cell) use (&$rowData) {
+                // add the cell text to the row data array
+                $rowData[] = $cell->text();
+            });
+           
+             $web_data[] = $rowData;
     });
-    DD($web_data);
+    // dd($web_data);
+    return view('scraper', $web_data);
 }
 }
 
