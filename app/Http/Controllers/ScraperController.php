@@ -30,7 +30,7 @@ class ScraperController extends Controller
              $web_data[] = $rowData;
     });
     // dd($web_data);
-    return view('scraper', $web_data);
+    return view('scraper', ["web_data" => $web_data]);
 }
 }
 
